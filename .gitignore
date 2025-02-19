@@ -1,0 +1,6 @@
+.venv
+deleted
+microsoft_certifications/*
+!microsoft_certifications/microsoft_certifications_reference_list.csv
+__pycache__/
+src/.env

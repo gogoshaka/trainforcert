@@ -1,0 +1,20 @@
+llm_cleaning_model: gpt-4o-mini
+cleaning_prompt: >
+    this content is extracted from a website. Clean it to remove "metadata" related to the format of the course. The output should be a text in proper english.
+    Also some content is related to a lab exercise, remove it as well.
+
+llm_question_model: gpt-4o-mini
+question_prompt: >
+    create a list of questions based on the following content. The question should be in proper english and should be relevant to the content.
+    Provide between 3 and 4 possible answers for each question with one correct answer.
+    The question should be open-ended and should not have a simple yes/no answer.
+llm_transcript_model: gpt-4o-mini
+transcript_prompt: >
+    convert this markdown content into a transcript that can be used for a podcast. The outpout format has to SSML.
+    This is an example of SSML:
+    <!--ID=B7267351-473F-409D-9765-754A8EBCDE05;Version=1|{"VoiceNameToIdMapItems":[{"Id":"db3f068d-39b8-44bc-a809-2e895922741a","Name":"Microsoft Server Speech Text to Speech Voice (en-US, AvaMultilingualNeural)","ShortName":"en-US-AvaMultilingualNeural","Locale":"en-US","VoiceType":"StandardVoice"}]}-->
+    <!--ID=FCB40C2B-1F9F-4C26-B1A1-CF8E67BE07D1;Version=1|{"Files":{}}-->
+    <!--ID=5B95B1CC-2C7B-494F-B746-CF22A0E779B7;Version=1|{"Locales":{"en-US":{"AutoApplyCustomLexiconFiles":[{}]}}}-->
+    <speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US"><voice name="en-US-AvaMultilingualNeural"></voice></speak> 
+
+speech_voice: "en-US-AvaMultilingualNeural"

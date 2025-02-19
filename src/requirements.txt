@@ -1,0 +1,11 @@
+azure.identity==1.20.0
+azure.mgmt.storage==22.0.0
+argcomplete==3.5.3
+azure_storage-blob==12.24.1
+beautifulsoup4==4.13.3
+openai==1.63.1
+pydantic==2.10.6
+python-dotenv==1.0.1
+PyYAML==6.0.2
+selenium==4.28.1
+webdriver_manager==4.0.2

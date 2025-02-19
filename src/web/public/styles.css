@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    
+    
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.answers-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#error-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: red;
+}
+#ecorrect-answer {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+}
+
+.pure-checkbox span {
+    display: inline-block;
+    margin-left: 3px
+}
+
+.button-cont {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

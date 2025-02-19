@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Training</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <div class="container">
+                <h1 id="title"></h1>
+                <div id="quiz-container">
+                    <div id="learning_paths" class="pure-menu">
+                        <span class="pure-menu-heading">Learning paths</span>
+                        <ul id="learning_path_ul" class="pure-menu-list"></ul>
+
+                    </div>
+                    <div id="question-container">
+                        <h2 id="question">Question will appear here</h2>
+                        <div class="answers-cont">
+                            <form id="answers"  class="pure-form">
+
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div id="error-message" style="display: none;">
+                        Incorrect!
+                    </div>
+                    <div id="correct-answer" style="display: none;">
+                        Correct!
+                    </div>
+                    <div id="explaination" style="display: none;"></div>
+                    <div class="button-cont">
+                        <button class="pure-button pure-button-primary" id="prev-button" onclick="prevQuestion()">Prev</button>
+                        <span style="margin: 0 10px;"></span>
+                        <button class="pure-button pure-button-primary" id="next-button" onclick="nextQuestion()">Next</button>
+                    </div>
+                    
+                    
+                </div>
+                <div id="result-container" style="display: none;">
+                    <h2 id="result">You have completed the quiz!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

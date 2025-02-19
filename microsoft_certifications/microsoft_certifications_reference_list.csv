@@ -1,0 +1,4 @@
+certification_id, certification_title, course_title, course_path
+DP100, Azure Data Scientist Associate, Designing and implementing a data science solution on Azure, https://learn.microsoft.com/en-us/training/courses/dp-100t01
+SC-100, Cybersecurity Architect Expert, Cybersecurity Architect Expert, https://learn.microsoft.com/en-us/credentials/certifications/cybersecurity-architect-expert/
+AZ-400, DevOps Engineer Expert, DevOps Engineer Expert, https://learn.microsoft.com/en-us/credentials/certifications/devops-engineer/

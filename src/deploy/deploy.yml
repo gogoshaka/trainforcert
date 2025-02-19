@@ -1,0 +1,4 @@
+subscription_id: '63a76351-2b1c-4294-8b52-48038b29344a'
+resource_group_name: 'isd'
+storage_account_name: 'certificationspol2'
+location: 'swedencentral'

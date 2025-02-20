@@ -1,6 +1,7 @@
 let currentQuestionIndex = 0;
-let questions = [];
+let questions = []; // learningPath questions currently loaded
 let learningPaths = []
+let learningPathQuestions = []
 let title = ""
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,24 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
             // take learning_pathh_title from data.questions
             data.questions.forEach(question => {
                 learningPaths.push(question.learning_path_title);
+                learningPathQuestions.push(question.questions);
             });
-            showLearningPaths();
+            buildLearningPathsMenu();
             
             //questions = data;
             showTitle();
-            showQuestion();
+            loadLearningPathQuestions(0);
         });
 });
 
-function showLearningPaths() {
-    console.log(learningPaths);
+function buildLearningPathsMenu() {
     for (let i = 0; i < learningPaths.length; i++) {
         const learningPath = learningPaths[i];
         const learningPathElement = document.createElement('li');
-        learningPathElement.textContent = learningPath;
-        learningPathElement.addEventListener('click', () => {
-            updateQUestions(learningPath);
+        learningPathElement.classList.add('pure-menu-item');
+        const link = document.createElement('a');
+        link.classList.add('pure-menu-link');
+        link.textContent = learningPath;
+        link.href = '#';
+        link.addEventListener('click', () => {
+            event.preventDefault();
+            // Remove the pure-menu-selected class from any previously selected link
+            const previouslySelected = document.querySelector('.pure-menu-selected');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('pure-menu-selected');
+            }
+            // Add the pure-menu-selected class to the clicked link
+            learningPathElement.classList.add('pure-menu-selected');
+            loadLearningPathQuestions(i);
         });
+        learningPathElement.appendChild(link);
         document.getElementById('learning_path_ul').appendChild(learningPathElement);
     }
 }
@@ -62,7 +76,13 @@ function hideExplanation() {
     document.getElementById('explanation').style.display = 'none';
 }
 
-function showQuestion() {
+function loadLearningPathQuestions(learningPathIndex) {
+    questions = learningPathQuestions[learningPathIndex];
+    currentQuestionIndex = 0;
+    refreshQuestion();
+}
+
+function refreshQuestion() {
     if (currentQuestionIndex >= questions.length) {
         document.getElementById('quiz-container').style.display = 'none';
         document.getElementById('result-container').style.display = 'block';
@@ -70,6 +90,9 @@ function showQuestion() {
     }
     
     const question = questions[currentQuestionIndex];
+    //hideExplanation();
+    //hideCorrectAnswer();
+    //hideErrorMessage();
     document.getElementById('question').textContent = question.question;
     
     const answersContainer = document.getElementById('answers');
@@ -118,12 +141,12 @@ function selectAnswer() {
     function nextQuestion() {
 
             currentQuestionIndex++;
-            showQuestion();
+            refreshQuestion();
     }
     function prevQuestion() {
         if (currentQuestionIndex === 0) {
             return;
         }
         currentQuestionIndex++;
-        showQuestion();
+        refreshQuestion();
 }

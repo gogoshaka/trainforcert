@@ -23,9 +23,10 @@ class Certification(AbstractScrappable):
         # get certification code from the last segment of the url
         match = re.search(r'/([a-z]{2}-\d{3})/?$', root_url)
         if not match:
-            print("Invalid Microsoft certification code. The provided URL has to end with the certification code like az-900")
-            raise ValueError("Unable to parse certficiation code from the provided url")
-        certification_code = match.group(1)
+            print("Invalid Microsoft certification code")
+            certification_code = None
+        else:
+            certification_code = match.group(1)
 
         try:
             # wait for h1 of class title to be present
@@ -87,7 +88,7 @@ class Certification(AbstractScrappable):
 
     def to_dict(self):
         return {
-            'certification_content': self.certification_content
+            'certification_content': [lp.to_dict() for lp in self.certification_content]
         }
     
     def to_markdown(self):

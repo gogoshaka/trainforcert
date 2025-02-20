@@ -36,7 +36,9 @@ class Course:
         self.certification_code = certification_code
         self.certification_title = certification_title
         self.official_course_file_name = f"{self.certification_code}.yml"
-        self.verbose = verbose  
+        self.verbose = verbose
+        self.input_token_count = 0
+        self.output_token_count = 0
         try:
             with open("config.yml", "r") as file:
                 self.config = yaml.safe_load(file)
@@ -92,6 +94,8 @@ class Course:
                 }
             ]
         )
+        self.input_token_count += response.usage.prompt_tokens
+        self.output_token_count += response.usage.completion_tokens
         return response.choices[0].message.content.strip()
     
     def _get_azure_openai_response_structured_output(self, llm_model, system_prompt, content, expected_output_format):
@@ -112,10 +116,14 @@ class Course:
             response_format=expected_output_format
             
         )
+        self.input_token_count += response.usage.prompt_tokens
+        self.output_token_count += response.usage.completion_tokens
         return response.choices[0].message.parsed
     
 
     def clean(self):
+        self.input_token_count = 0
+        self.output_token_count = 0
         with open(f'../microsoft_certifications/{self.certification_code}/{Course.DIRECTORY_OFFICIAL_COURSE}/{self.official_course_file_name}', 'r') as file:
             course_content = yaml.safe_load(file)
     
@@ -145,6 +153,9 @@ class Course:
         # Write the cleaned course content to a new YAML file
         with open(f'../microsoft_certifications/{self.certification_code}/{Course.DIRECTORY_CLEANED_COURSE}/{self.official_course_file_name}', 'w') as file:
             yaml.dump(certification.to_dict(), file, default_flow_style=False)
+
+        print(f"Cleaning has consumed {self.input_token_count} input tokens and {self.output_token_count} output tokens.")
+        print(f"{GREEN}Cleaning completed successfully.{RESET}")
 
                     
     def scrap(self, certification_url):
